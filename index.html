@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>HELLO - FRONT</h1>
+    <div id="msg"></div>
+    <script>
+        axios('https://render-upload-test-ozx6.onrender.com')
+            .then(res => {
+                const data = res.data;
+                if (Array.isArray(data) && data.length > 0) {
+                    document.getElementById('msg').innerHTML = data[0].first;
+                } else {
+                    document.getElementById('msg').innerHTML = 'No data available';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('msg').innerHTML = 'An error occurred';
+            });
+    </script>
+</body>
+</html>
